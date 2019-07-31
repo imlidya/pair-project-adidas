@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     role: DataTypes.STRING,
-    logged_in: DataTypes.BOOLEAN
+    logged_in: {
+      type: DataTypes.BOOLEAN, defaultValue: false
+    }
   }, {
     sequelize, modelName: "User"
   });
