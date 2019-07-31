@@ -11,7 +11,7 @@ class ProductController {
             price: req.body.price
         })
         .then(() => {
-            res.redirect('/')
+            res.redirect('/product')
         })
         .catch(err => {
             // console.log('create ===> ', req.body.name);
@@ -25,10 +25,39 @@ class ProductController {
                 ['id', 'ASC']
             ]
         })
-        .then(() => {
-            res.render('products/list')
+        .then((data) => {
+            res.render('products/list', {data: data})
         })
         .catch(() => {
+            res.send(err)
+        })
+    }
+
+    static delete(req, res) {
+        Product.destroy({
+            where: {
+                id : req.params.id
+            }
+        })
+        .then()
+    }
+
+    static login(req, res) {
+        res.render('login')
+        .then(() => {
+            res.redirect('/product/login')
+        })
+        .cath((err) => {
+            res.send(err)
+        })
+    }
+
+    static buyProduct(req, res) {
+        res.render('products/buyProduct')
+        .then(() => {
+            res.redirect('/product/buy-product')
+        })
+        .catch((err) => {
             res.send(err)
         })
     }

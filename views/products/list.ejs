@@ -19,7 +19,7 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-    <%- include('./partials/navbar'); %>
+    <%- include('../partials/navbar'); %>
 <center><h2>Product Data</h2></center>
 <center><a href = '/product/add'><p>add product</p></a></center>
 
@@ -28,12 +28,15 @@ tr:nth-child(even) {
     <th>id</th>
     <th>Name</th>
     <th>Price</th>
+    <th>Actions</th>
+    <th>Options</th>
   </tr>
   <%data.forEach(e => {%>
     <tr>
+        <td><%=e.id%></td>
         <td><%= e.name%></td>
         <td><%= e.price %></td>
-        <td><a href= '/product/<%=e.id%>/add-product'>Add Product</a></td>
+        <td><a href= '/product/<%=e.id%>/add'>Add Product</a></td>
         <td><a href = '/product/edit/<%=e.id%>'>Edit</a> | <a href = '/product/delete/<%=e.id%>'>Delete</a> </td>
     </tr>
   <%})%>

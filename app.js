@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3333
-const routes = require('./routes/productRoutes')
+// const routes = require('./routes/productRoutes')
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
@@ -9,6 +9,6 @@ app.use(express.urlencoded({ extended: false })) // for parsing application/x-ww
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => res.render('home'))
-app.use('/product', routes)
+app.use('/product', require('./routes/productRoutes'))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
