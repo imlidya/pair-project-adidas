@@ -12,4 +12,13 @@ app.set('view engine', 'ejs')
 
 app.use('/', require('./routes/productRoutes'))
 app.use('/user', require('./routes/userRoutes'))
+app.use(session({
+  secret: '',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1e9
+  }
+}))
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
