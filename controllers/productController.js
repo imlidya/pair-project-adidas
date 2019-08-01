@@ -1,6 +1,8 @@
 const Product = require('../models').Product
 const User = require('../models').User
 const UserOrder = require('../models').UserOrder
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 class ProductController {
     static form(req, res) {
@@ -17,6 +19,30 @@ class ProductController {
         })
         .catch(err => {
             // console.log('create ===> ', req.body.name);
+            res.send(err)
+        })
+    }
+
+    static searchProduct(req, res) {
+        console.log(req.body.keyword);
+        
+        Product.findAll({
+            where:{
+                name:{
+                  [Op.substring]: req.body.keyword
+                }
+            }
+        })
+        .then ((data) => {
+            if (data.length<1) {
+                // console.log("no result");
+                res.send("no result")
+            } else {
+                // console.log(data);
+                res.send(data)
+            }
+        })
+        .catch ((err) => {
             res.send(err)
         })
     }

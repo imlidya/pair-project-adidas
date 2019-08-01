@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3333
+const session = require('express-session')
 // const routes = require('./routes/productRoutes')
 
 app.use(express.json()) // for parsing application/json

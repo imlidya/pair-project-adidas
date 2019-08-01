@@ -1,4 +1,7 @@
 'use strict';
+// const Sequelize = require('sequelize')
+// const Op = Sequelize.Op
+
 module.exports = (sequelize, DataTypes) => {
 
   class Product extends sequelize.Sequelize.Model{}
