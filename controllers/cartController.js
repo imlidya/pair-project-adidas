@@ -1,5 +1,5 @@
-const Cart = require ("../models/cart")
-const userOrder = require ("../models/userorder")
+const Cart = require ("../models").Cart
+const userOrder = require ("../models").UserOrder
 
 class CartController {
 
