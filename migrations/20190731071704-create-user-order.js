@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('ClientOrders', {
+    return queryInterface.createTable('UserOrders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ClientId: {
+      UserId: {
         type: Sequelize.INTEGER
       },
       ProductId: {
@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('ClientOrders');
+    return queryInterface.dropTable('UserOrders');
   }
 };
