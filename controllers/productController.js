@@ -25,11 +25,10 @@ class ProductController {
 
     static searchProduct(req, res) {
         console.log(req.body.keyword);
-        
         Product.findAll({
             where:{
                 name:{
-                  [Op.substring]: req.body.keyword
+                    [Op.iLike]: '%'+req.body.keyword+'%'
                 }
             }
         })
@@ -39,7 +38,7 @@ class ProductController {
                 res.send("no result")
             } else {
                 // console.log(data);
-                res.send(data)
+                res.render("products/searchedProducts",{data:data})
             }
         })
         .catch ((err) => {
