@@ -88,7 +88,7 @@ class UserController {
         })
         .then((data) => {
             // res.send(data)
-            res.redirect(`${data.UserId}`)
+            res.redirect(`user/login/product${data.UserId}`)
         })
         .catch((err) => {
             console.log(err)
@@ -97,7 +97,7 @@ class UserController {
     }
 
     static userCart(req, res) {
-        res.render('users/formcart')
+        res.render('users/checkout')
     }
 }
 
