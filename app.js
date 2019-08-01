@@ -7,13 +7,8 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
 
 app.set('view engine', 'ejs')
+// app.locals.hel
 
-// app.get('/', (req, res) => res.render('home'))
 app.use('/', require('./routes/productRoutes'))
-
+app.use('/user', require('./routes/userRoutes'))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
-//temporary
-const router = express.Router()
-const cartController = require ('./controllers/cartController')
-router.get ('/cart',cartController.cart)

@@ -6,7 +6,9 @@ router.get('/product', Controller.listProduct)
 router.get('/', Controller.buyProduct)
 router.get('/product/add', Controller.form)
 router.post('/product/add', Controller.createProduct)
-router.get('/product/login', Controller.login)
 router.get('/product/delete/:id', Controller.delete)
+router.get('/product/edit/:id', Controller.updateForm)
+router.post('/product/edit/:id', Controller.editProduct)
+
 
 module.exports = router

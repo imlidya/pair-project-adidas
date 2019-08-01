@@ -13,7 +13,7 @@ class ProductController {
             price: req.body.price
         })
         .then(() => {
-            res.redirect('/product/add')
+            res.redirect('/product')
         })
         .catch(err => {
             // console.log('create ===> ', req.body.name);
@@ -26,31 +26,13 @@ class ProductController {
             order : [
                 ['id', 'ASC']
             ]
+        }) 
+        .then((data) => {
+            res.render('products/list', {data: data})
+            // res.send(data)
         })
-        .then((products) => {
-            let arrProduct = products.map(product => {
-                return new Promise((resolve, reject) => {
-                    let Users = []
-                    product.getUsers()
-                    .then(users => {
-                        users.forEach(user => {
-                            Users.push(user.dataValues)
-                        })
-                        product.dataValues.Users = Users
-                        resolve(product)
-                    })
-                    .catch(err => {
-                        reject(err)
-                    })
-                })
-            })
-            return Promise.all(arrProduct)
-            .then((data) => {
-                res.render('products/list', {data: data})
-                // res.send(data)
-            })
-        })
-        .catch(() => {
+    
+        .catch((err) => {
             res.send(err)
         })
     }
@@ -69,20 +51,33 @@ class ProductController {
         })
     }
 
-    static login(req, res) {
-        res.render('login')
-        .then(() => {
-            res.redirect('/product/login')
-        })
-        .cath((err) => {
-            res.send(err)
-        })
-    }
-
     static buyProduct(req, res) {
         res.render('products/buyProduct')
+    }
+
+    static updateForm(req,res){
+        Product.findOne({
+            where : {
+                id : req.params.id
+            }
+        })
+        .then(data=>
+            res.render('products/editProduct',{data: data}))
+        .catch(err=>
+            res.send(err))
+       
+    }
+
+    static editProduct(req, res) {
+        Product.update(
+            req.body, {
+                where :{
+                    id : req.params.id
+                }
+            }
+        )
         .then(() => {
-            res.redirect('/product/buy-product')
+            res.redirect('/product')
         })
         .catch((err) => {
             res.send(err)
