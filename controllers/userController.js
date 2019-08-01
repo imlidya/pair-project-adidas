@@ -1,6 +1,6 @@
 const User = require('../models').User
 const Product = require('../models').Product
-const Cart = require('../models/cart')
+const Cart = require('../models').Cart
 class UserController {
 
     static formClient(req, res) {
@@ -82,8 +82,22 @@ class UserController {
 
     static addLoopPost(req, res) {
         // console.log(req.body)
+        Cart.create({
+            UserId: req.params.id,
+            ProductId: req.body.id
+        })
+        .then((data) => {
+            // res.send(data)
+            res.redirect(`${data.UserId}`)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.send(err)
+        })
+    }
 
-        
+    static userCart(req, res) {
+        res.render('users/formcart')
     }
 }
 
