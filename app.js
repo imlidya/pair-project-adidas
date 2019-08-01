@@ -12,3 +12,8 @@ app.set('view engine', 'ejs')
 app.use('/', require('./routes/productRoutes'))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+//temporary
+const router = express.Router()
+const cartController = require ('./controllers/cartController')
+router.get ('/cart',cartController.cart)

@@ -1,11 +1,17 @@
 'use strict';
+const Cart = require ("/models/cart")
 module.exports = (sequelize, DataTypes) => {
-  const Cart = sequelize.define('Cart', {
+
+  class Cart extends sequelize.Sequelize.Model {
+    static associate(models) {
+      // associations can be defined here
+    }
+  };
+  Cart.init({
     UserId: DataTypes.INTEGER,
     ProductId: DataTypes.INTEGER
-  }, {});
-  Cart.associate = function(models) {
-    // associations can be defined here
-  };
+  }, {
+    sequelize
+  });
   return Cart;
 };
