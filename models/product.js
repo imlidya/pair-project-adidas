@@ -2,7 +2,6 @@
 module.exports = (sequelize, DataTypes) => {
 
   class Product extends sequelize.Sequelize.Model{}
-
   Product.init ({
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL
