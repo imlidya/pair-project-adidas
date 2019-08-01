@@ -31,8 +31,8 @@ class ProductController {
             res.render('products/list', {data: data})
             // res.send(data)
         })
-    
         .catch((err) => {
+            // console.log(err)
             res.send(err)
         })
     }

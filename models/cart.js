@@ -1,5 +1,4 @@
 'use strict';
-const Cart = require ("/models/cart")
 module.exports = (sequelize, DataTypes) => {
 
   class Cart extends sequelize.Sequelize.Model{}

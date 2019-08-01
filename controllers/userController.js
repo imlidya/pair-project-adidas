@@ -1,4 +1,6 @@
 const User = require('../models').User
+const Product = require('../models').Product
+const Cart = require('../models/cart')
 class UserController {
 
     static formClient(req, res) {
@@ -57,15 +59,31 @@ class UserController {
             }
         })
         .then((data) => {
-            if(data.role == 'admin') {
+            if(data.dataValues.role == 'admin') {
                 res.redirect('/product/add')
-            } else {
-                res.redirect('/')
+            } else if(data.dataValues.role !== 'admin ' || data.dataValues.role == null){
+                res.redirect(`/user/login/product/${data.id}`)
             }
         })
         .catch((err) => {
             res.send(err)
         })
+    }
+
+    static addLoop(req, res) {
+        Product.findAll()
+        .then((datas) => {
+            res.render('users/buatloop', {data:datas})
+        })
+        .catch((err) =>{
+            res.send(err)
+        })
+    }
+
+    static addLoopPost(req, res) {
+        // console.log(req.body)
+
+        
     }
 }
 
