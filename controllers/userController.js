@@ -99,12 +99,16 @@ class UserController {
     static userCart(req, res) {
         Promise.all([
             Product.findAll(),
-            Cart.findAll()
+            Cart.findAll(),
+            User.findAll()
         ])
         // Cart.findAll()
         .then((data) => {
-            res.send(data)
-            // res.render('users/checkout')
+            // res.send(data)
+            res.render('users/checkout')
+        })
+        .catch((err) => {
+            res.send(err)
         })
     }
 }
