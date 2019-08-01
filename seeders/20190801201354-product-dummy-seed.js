@@ -7,7 +7,8 @@ let data = [
   {name: "Pharrel Williams X Adidas",price: 50000, createdAt: new Date(), updatedAt: new Date()},
   {name: "UltraBoost 19 Shoes",price: 75000, createdAt: new Date(), updatedAt: new Date()},
   {name: "Predator Firm Ground Cleats",price: 100000, createdAt: new Date(), updatedAt: new Date()},
-  {name: "Juventus Autentic Jersey",price: 50000, createdAt: new Date(), updatedAt: new Date()}
+  {name: "Juventus Authentic Jersey",price: 50000, createdAt: new Date(), updatedAt: new Date()},
+  {name: "Liverpool Authentic Jersey",price: 50000, createdAt: new Date(), updatedAt: new Date()}
 ]
 
 module.exports = {
