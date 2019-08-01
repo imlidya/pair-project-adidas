@@ -77,7 +77,10 @@ class ProductController {
     }
 
     static buyProduct(req, res) {
-        res.render('products/buyProduct')
+        Product.findAll()
+        .then ( data => {
+            res.render('products/buyProduct', {data:data})
+        })
     }
 
     static updateForm(req,res){
