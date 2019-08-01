@@ -1,8 +1,8 @@
 'use strict';
+const Cart = require ("/models/cart")
 module.exports = (sequelize, DataTypes) => {
 
   class Cart extends sequelize.Sequelize.Model{}
-
   Cart.init({
     UserId: DataTypes.INTEGER,
     ProductId: DataTypes.INTEGER
