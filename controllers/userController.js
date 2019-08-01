@@ -97,11 +97,15 @@ class UserController {
     }
 
     static userCart(req, res) {
-        Cart.findAll()
+        Promise.all([
+            Product.findAll(),
+            Cart.findAll()
+        ])
+        // Cart.findAll()
         .then((data) => {
-            // res.send(data)
+            res.send(data)
+            // res.render('users/checkout')
         })
-        res.render('users/checkout')
     }
 }
 
