@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: false })) // for parsing application/x-ww
 
 app.set('view engine', 'ejs')
 
-app.get('/', (req, res) => res.render('home'))
-app.use('/product', require('./routes/productRoutes'))
+// app.get('/', (req, res) => res.render('home'))
+app.use('/', require('./routes/productRoutes'))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

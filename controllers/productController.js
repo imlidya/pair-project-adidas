@@ -1,4 +1,6 @@
 const Product = require('../models').Product
+const User = require('../models').User
+const UserOrder = require('../models').UserOrder
 
 class ProductController {
     static form(req, res) {
@@ -11,7 +13,7 @@ class ProductController {
             price: req.body.price
         })
         .then(() => {
-            res.redirect('/product')
+            res.redirect('/product/add')
         })
         .catch(err => {
             // console.log('create ===> ', req.body.name);
@@ -25,8 +27,28 @@ class ProductController {
                 ['id', 'ASC']
             ]
         })
-        .then((data) => {
-            res.render('products/list', {data: data})
+        .then((products) => {
+            let arrProduct = products.map(product => {
+                return new Promise((resolve, reject) => {
+                    let Users = []
+                    product.getUsers()
+                    .then(users => {
+                        users.forEach(user => {
+                            Users.push(user.dataValues)
+                        })
+                        product.dataValues.Users = Users
+                        resolve(product)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+                })
+            })
+            return Promise.all(arrProduct)
+            .then((data) => {
+                res.render('products/list', {data: data})
+                // res.send(data)
+            })
         })
         .catch(() => {
             res.send(err)
@@ -35,11 +57,16 @@ class ProductController {
 
     static delete(req, res) {
         Product.destroy({
-            where: {
+            where :{
                 id : req.params.id
             }
         })
-        .then()
+        .then(() => {
+            res.redirect('/product')
+        })
+        .catch((err) => {
+            res.send(err)
+        })
     }
 
     static login(req, res) {

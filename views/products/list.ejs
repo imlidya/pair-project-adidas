@@ -1,46 +1,65 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</head>
-<body>
-    <%- include('../partials/navbar'); %>
-<center><h2>Product Data</h2></center>
-<center><a href = '/product/add'><p>add product</p></a></center>
 
-<table>
-  <tr>
-    <th>id</th>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Actions</th>
-    <th>Options</th>
-  </tr>
-  <%data.forEach(e => {%>
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('../partials/navbar'); %>
+  <center>
+    <h2>Product Data</h2>
+  </center>
+  <center><a href='/product/add'>
+      <p>add product</p>
+    </a></center>
+
+  <table>
     <tr>
-        <td><%=e.id%></td>
-        <td><%= e.name%></td>
-        <td><%= e.price %></td>
-        <td><a href= '/product/<%=e.id%>/add'>Add Product</a></td>
-        <td><a href = '/product/edit/<%=e.id%>'>Edit</a> | <a href = '/product/delete/<%=e.id%>'>Delete</a> </td>
+      <th>id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Users</th>
+      <th>Options</th>
     </tr>
-  <%})%>
-</table>
+    <%data.forEach(e => {%>
+    <tr>
+      <td><%=e.id%></td>
+      <td><%= e.name%></td>
+      <td><%= e.price %></td>
+      <td>
+        <% if(e.dataValues.Users) {%>
+        <ol>
+          <% e.dataValues.Users.forEach((elUser) => { %>
+          <li><%= elUser.name %></li>
+          <% }) %>
+        </ol>
+        <% }else{ %>
+        -
+        <% } %>
+      </td>
+      <td><a href='/product/edit/<%=e.id%>'>Edit</a> | <a href='/product/delete/<%=e.id%>'>Delete</a> </td>
+    </tr>
+    <%})%>
+  </table>
 
 </body>
+
 </html>
