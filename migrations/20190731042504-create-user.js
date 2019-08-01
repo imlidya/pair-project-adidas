@@ -20,8 +20,8 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      isAdmin: {
-        type: Sequelize.BOOLEAN
+      role: {
+        type: Sequelize.STRING
       },
       logged_in: {
         type: Sequelize.BOOLEAN
