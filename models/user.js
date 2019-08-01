@@ -12,8 +12,10 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     // associations can be defined here
+    // User.hasMany(models.Cart)
+    // User.belongsTo(models.Cart)
     User.belongsToMany(models.Product, {through: models.UserOrder})
-    User.belongsToMany(models.Product, {through: models.Cart})
   };
   return User;
 };
+
