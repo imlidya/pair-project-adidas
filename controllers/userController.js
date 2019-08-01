@@ -15,11 +15,20 @@ class UserController {
         res.render('users/pageregister')
     }
 
+    // static registerUser(req, res) {
+    //     if (req.body.role = "admin") {
+    //         User.registerAdmin(req)
+    //     } else {
+    //         User.registerClient(req)
+    //     }
+    // }
+
     static registerClient(req, res) {
         User.create({
             name: req.body.name,
             email: req.body.email,
             username: req.body.username,
+            role: req.body.role,
             password: req.body.password
         })
         .then(() => {
@@ -59,6 +68,7 @@ class UserController {
             }
         })
         .then((data) => {
+
             if(data.dataValues.role == 'admin') {
                 res.redirect('/product/add')
             } else if(data.dataValues.role !== 'admin ' || data.dataValues.role == null){
