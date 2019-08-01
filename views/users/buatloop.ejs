@@ -3,21 +3,27 @@
 <head>
   <%- include('../partials/navbar'); %>
 </head>
+<%data.forEach( e => {%>
   <form action="" method="POST">
     <table border="1">
         <tr>
+            <td>id</td>
             <td>Name</td>
             <td>Price</td>
         </tr>
-      <%data.forEach( e => {%>
       <tr>
+        <td><%=e.id%></td>
         <td><%=e.name%></td>
         <td><%=e.price%></td>
+        <input type="hidden" name="id" value="<%=e.id%>">
         <input type="hidden" name="name" value="<%=e.name%>">
         <input type="hidden" name="price" value="<%=e.price%>">
       </tr>
       <input type="submit" value="Add Item To Cart">
-      <%})%>
     </table>
+    <br>
+    <br>
   </form>
-</html>
+  <%})%>
+  <a href="/cart">CHECKOUT</a>
+  </html>
