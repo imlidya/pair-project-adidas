@@ -13,7 +13,7 @@ app.set('view engine', 'ejs')
 app.use('/', require('./routes/productRoutes'))
 app.use('/user', require('./routes/userRoutes'))
 app.use(session({
-  secret: '',
+  secret: 'terces',
   resave: false,
   saveUninitialized: true,
   cookie: {
