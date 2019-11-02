@@ -23,7 +23,7 @@
     "express-session": "^1.16.2",
     "pg": "^7.12.0",
     "req-flash": "0.0.3",
-    "sequelize": "^5.12.1",
+    "sequelize": "^5.15.1",
     "session": "^0.1.0"
   }
 }
